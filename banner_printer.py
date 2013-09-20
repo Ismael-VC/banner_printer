@@ -53,6 +53,8 @@ def main(*args):
         banner_printer.main([args])
 
     Examples:
+        $ python33 banner_printer.py
+    
         $ python33 banner_printer.py 150.65.7.130
 
         $ python33 banner_printer.py 150.65.7.130 72.26.195.64
