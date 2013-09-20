@@ -92,7 +92,7 @@ def main(*args):
                 '192.168.95.149',
                 '72.26.195.64']
 
-    if sys.argv:
+    if len(sys.argv) >= 2:
         args = sys.argv[1:]
 
     _print_banner(*args)
