@@ -7,10 +7,9 @@ Banner printer.
 >>> help(banner_printer.main)
 '''
 
-
+import textwrap
 import socket
-
-from textwrap import dedent as dd
+import sys
 
 
 __author__ = 'Ismael Venegas Castelló'
@@ -36,7 +35,7 @@ def _print_banner(*args):
         banner = _return_banner(ip)
 
         if banner:
-            print(dd(
+            print(textwrap.dedent(
                  '''
                  [+] SUCCESS:
                  {3}Banner => "{0}"
@@ -84,6 +83,8 @@ def main(*args):
                 '150.65.7.130',
                 '192.168.95.149',
                 '72.26.195.64']
+    elif sys.argv:
+        args = sys.argv[1:]
 
     _print_banner(*args)
 
