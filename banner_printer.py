@@ -1,6 +1,5 @@
 #!/usr/bin/env python33
 
-
 '''
 Banner printer.
 
@@ -68,6 +67,7 @@ def main(*args, port:int=21, timeout:'int|float'=2):
                        '150.65.7.130',
                        '192.168.95.149',
                        '72.26.195.64']
+                       
         >>> banner_printer.main(*ip_list)
         [-] ERROR: timed out
                 ip => "192.168.95.148"
