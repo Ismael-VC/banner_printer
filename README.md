@@ -7,7 +7,7 @@ Banner printer
 Prints the banner of the provided ips.
 
     Usage:
-        banner_printer.main([args])
+        banner_printer.main([args[, port[, timeout]]])
 
     Examples:
 
@@ -26,13 +26,14 @@ Prints the banner of the provided ips.
                        '150.65.7.130',
                        '192.168.95.149',
                        '72.26.195.64']
+                       
         >>> banner_printer.main(*ip_list)
         [-] ERROR: timed out
-                ip #0 => 192.168.95.148
+                ip => "192.168.95.148"
         [+] SUCCESS:
                 Banner => "220 (vsFTPd 3.0.2)"
-                ip #1 => 150.65.7.130
+                ip => "150.65.7.130"
         [-] ERROR: timed out
-                ip #2 => 192.168.95.149
+                ip => "192.168.95.149"
         [-] ERROR: timed out
-                ip #3 => 72.26.195.64
+                ip => "72.26.195.64"
