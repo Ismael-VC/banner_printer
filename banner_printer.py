@@ -36,11 +36,9 @@ def _print_banner(*args):
 
         if banner:
             print(textwrap.dedent(
-                 '''
-                 [+] SUCCESS:
-                 {3}Banner => "{0}"
-                 {3}ip #{1} => {2}
-                 '''.format(banner, index, ip, '\t')))
+                 '''[+] SUCCESS:
+                    {3}Banner => "{0}"
+                    {3}ip #{1} => {2}'''.format(banner, index, ip, '\t')))
         else:
             print('\tip #{0} => {1}'.format(index, ip))
 
