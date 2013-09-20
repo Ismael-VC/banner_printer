@@ -13,7 +13,7 @@ import sys
 
 
 __author__ = 'Ismael Venegas Castelló'
-__license__ = 'GPL'
+__license__ = 'GPL v2'
 __email__ = 'ismael.vc1337@gmail.com'
 
 
@@ -53,6 +53,13 @@ def main(*args):
         banner_printer.main([args])
 
     Examples:
+        $ python33 banner_printer.py 150.65.7.130
+
+        $ python33 banner_printer.py 150.65.7.130 72.26.195.64
+
+        $ python33
+
+        >>> import banner_printer
 
         >>> banner_printer.main()    # Runs default test.
 
@@ -66,6 +73,7 @@ def main(*args):
                        '72.26.195.64']
 
         >>> banner_printer.main(*ip_list)
+
         [-] ERROR: timed out
                 ip #0 => 192.168.95.148
 
@@ -83,7 +91,8 @@ def main(*args):
                 '150.65.7.130',
                 '192.168.95.149',
                 '72.26.195.64']
-    elif sys.argv:
+
+    if sys.argv:
         args = sys.argv[1:]
 
     _print_banner(*args)
