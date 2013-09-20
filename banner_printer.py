@@ -7,6 +7,7 @@ Banner printer.
 >>> help(banner_printer.main)
 '''
 
+import random
 import textwrap
 import socket
 import sys
@@ -17,7 +18,7 @@ __license__ = 'GPL v2'
 __email__ = 'ismael.vc1337@gmail.com'
 
 
-def _return_banner(ip:str, port:int=21, timeout:'int/float'=2):
+def _return_banner(ip:str, port:int=21, timeout:'int|float'=2):
     try:
         socket.setdefaulttimeout(timeout)
         with socket.socket() as s:
@@ -30,7 +31,7 @@ def _return_banner(ip:str, port:int=21, timeout:'int/float'=2):
         print('[-] ERROR: {0}'.format(e))
 
 
-def _print_banner(port:int=21, timeout:'int/float'=2, *args):
+def _print_banner(*args, port:int=21, timeout:'int|float'=2):
     for index, ip in enumerate(args):
         banner = _return_banner(ip, port, timeout)
 
@@ -38,18 +39,18 @@ def _print_banner(port:int=21, timeout:'int/float'=2, *args):
             print(textwrap.dedent(
                   '''\
                   [+] SUCCESS:
-                  {3}Banner => "{0}"
-                  {3}ip #{1} => {2}'''.format(banner, index, ip, '\t')))
+                  {2}Banner => "{0}"
+                  {2}ip => "{1}"'''.format(banner, ip, '\t')))
         else:
-            print('\tip #{0} => {1}'.format(index, ip))
+            print('\tip => "{0}"'.format(ip))
 
 
-def main(port:int=21, timeout:'int/float'=2, *args):
+def main(*args, port:int=21, timeout:'int|float'=2):
     '''
     Prints the banner of the provided ips.
 
     Usage:
-        banner_printer.main([args])
+        banner_printer.main([args[, port[, timeout]]])
 
     Examples:
         $ python33 banner_printer.py    # Runs default test.
@@ -58,7 +59,7 @@ def main(port:int=21, timeout:'int/float'=2, *args):
 
         $ python33
         >>> import banner_printer
-        
+
         >>> banner_printer.main()    # Runs default test.
         >>> banner_printer.main('150.65.7.130', port=21, timeout=3)
         >>> banner_printer.main('150.65.7.130', '192.168.95.149')
@@ -69,26 +70,28 @@ def main(port:int=21, timeout:'int/float'=2, *args):
                        '72.26.195.64']
         >>> banner_printer.main(*ip_list)
         [-] ERROR: timed out
-                ip #0 => 192.168.95.148
+                ip => "192.168.95.148"
         [+] SUCCESS:
                 Banner => "220 (vsFTPd 3.0.2)"
-                ip #1 => 150.65.7.130
+                ip => "150.65.7.130"
         [-] ERROR: timed out
-                ip #2 => 192.168.95.149
+                ip => "192.168.95.149"
         [-] ERROR: timed out
-                ip #3 => 72.26.195.64
+                ip => "72.26.195.64"
     '''
     if not args:
-        args = ['192.168.95.148',
-                '150.65.7.130',
-                '192.168.95.149',
-                '72.26.195.64']
+        args = ('{0}.{1}.{2}.{3}'.format(random.randint(1,255),
+                                         random.randint(1,255),
+                                         random.randint(1,255),
+                                         random.randint(1,255))
+                for i in range(1000))
 
     if len(sys.argv) >= 2:
         args = sys.argv[1:]
 
-    _print_banner(port, timeout, *args)
+    _print_banner(*args, port=port, timeout=timeout)
 
 
 if __name__ == '__main__':
     main()
+
