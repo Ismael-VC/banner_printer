@@ -52,7 +52,7 @@ def main(port:int=21, timeout:'int/float'=2, *args):
         banner_printer.main([args])
 
     Examples:
-        $ python33 banner_printer.py
+        $ python33 banner_printer.py    # Runs default test.
         $ python33 banner_printer.py 150.65.7.130
         $ python33 banner_printer.py 150.65.7.130 72.26.195.64
 
