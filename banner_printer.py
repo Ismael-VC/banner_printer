@@ -32,7 +32,7 @@ def _return_banner(ip:str, port:int=21, timeout:'int|float'=2):
 
 
 def _print_banner(*args, port:int=21, timeout:'int|float'=2):
-    for index, ip in enumerate(args):
+    for ip in args:
         banner = _return_banner(ip, port, timeout)
 
         if banner:
@@ -94,4 +94,3 @@ def main(*args, port:int=21, timeout:'int|float'=2):
 
 if __name__ == '__main__':
     main()
-
