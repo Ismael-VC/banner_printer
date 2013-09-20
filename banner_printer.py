@@ -60,7 +60,7 @@ def main(port:int=21, timeout:'int/float'=2, *args):
         >>> import banner_printer
         
         >>> banner_printer.main()    # Runs default test.
-        >>> banner_printer.main('150.65.7.130')
+        >>> banner_printer.main('150.65.7.130', port=21, timeout=3)
         >>> banner_printer.main('150.65.7.130', '192.168.95.149')
 
         >>> ip_list = ['192.168.95.148',
