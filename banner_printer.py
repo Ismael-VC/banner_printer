@@ -17,9 +17,9 @@ __license__ = 'GPL v2'
 __email__ = 'ismael.vc1337@gmail.com'
 
 
-def _return_banner(ip:'str', port:'int'=21):
+def _return_banner(ip:str, port:int=21, timeout:'int/float'=2):
     try:
-        socket.setdefaulttimeout(2)
+        socket.setdefaulttimeout(timeout)
         with socket.socket() as s:
             s.connect((ip, port))
             banner = s.recv(1024).decode().rstrip()
@@ -30,20 +30,21 @@ def _return_banner(ip:'str', port:'int'=21):
         print('[-] ERROR: {0}'.format(e))
 
 
-def _print_banner(*args):
+def _print_banner(port:int=21, timeout:'int/float'=2, *args):
     for index, ip in enumerate(args):
-        banner = _return_banner(ip)
+        banner = _return_banner(ip, port, timeout)
 
         if banner:
             print(textwrap.dedent(
-                 '''[+] SUCCESS:
-                    {3}Banner => "{0}"
-                    {3}ip #{1} => {2}'''.format(banner, index, ip, '\t')))
+                  '''\
+                  [+] SUCCESS:
+                  {3}Banner => "{0}"
+                  {3}ip #{1} => {2}'''.format(banner, index, ip, '\t')))
         else:
             print('\tip #{0} => {1}'.format(index, ip))
 
 
-def main(*args):
+def main(port:int=21, timeout:'int/float'=2, *args):
     '''
     Prints the banner of the provided ips.
 
@@ -52,7 +53,7 @@ def main(*args):
 
     Examples:
         $ python33 banner_printer.py
-    
+
         $ python33 banner_printer.py 150.65.7.130
 
         $ python33 banner_printer.py 150.65.7.130 72.26.195.64
@@ -95,7 +96,7 @@ def main(*args):
     if len(sys.argv) >= 2:
         args = sys.argv[1:]
 
-    _print_banner(*args)
+    _print_banner(port, timeout, *args)
 
 
 if __name__ == '__main__':
